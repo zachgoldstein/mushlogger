@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "mushroom_datalogger",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"cstdint": "cpp"
+		}
+	}
+}
