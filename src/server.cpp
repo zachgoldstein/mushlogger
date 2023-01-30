@@ -217,6 +217,7 @@ void handleRawData()
 
     server.send(200, "text/plain", message);
     digitalWrite(led, 0);
+    datalogBuffer.clear();
 }
 
 bool handleFileRead(String path = "")
