@@ -1,0 +1,45 @@
+#include <sensors/base_sensor.cpp>
+#include "Arduino.h"
+#include <Wire.h>
+#include <SPI.h>
+#include <SD.h>
+#include <cstdint>
+
+#include <ArduinoJson.h>
+
+class XXXSensor: public BaseSensor {
+    private:
+
+    const char *name = "XXX";
+
+    public:
+    bool setup()
+    {
+
+        return true;
+    }
+
+    void debug() {
+
+    }
+    
+    void loop(){
+        
+    }
+
+    char getName() {
+        return *name;
+    }
+
+    DynamicJsonDocument getData()
+    {
+
+        DynamicJsonDocument doc(200);
+        // doc["temperature_bme688"] = bme688.temperature;
+        // doc["pressure_bme688"] = bme688.pressure / 100.0;
+        // doc["humidity_bme688"] = bme688.humidity;
+        // doc["gas_resistance_bme688"] = bme688.gas_resistance / 1000.0;
+        return doc;
+    }
+};
+

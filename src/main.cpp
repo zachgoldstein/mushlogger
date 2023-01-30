@@ -14,13 +14,12 @@ Mushroom Datalogger
 #include <Wire.h>
 #include <SPI.h>
 #include <cstdint>
+#include <string>
 
 const byte PICO_I2C_SDA = 12;
 const byte PICO_I2C_SCL = 13;
 
 const int chipSelect = 17;
-
-const char *DATA_FILENAME = "/data_raw.jsonfiles";
 
 const int loopDelay = 100;
 
@@ -64,7 +63,8 @@ void loop()
 {
   uint32_t now = getUnixtime();
   loopCore();
-  loopSensors(now);
+  String data_location = "/data_raw.jsonfiles";
+  loopSensors(now, data_location);
   loopServer();
 
   delay(loopDelay);
