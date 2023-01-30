@@ -20,15 +20,12 @@ extern Config config;
 CircularBuffer<String, 200> datalogBuffer;
 
 // Filename to read data from
-extern char *DATA_FILENAME;
-const char *serverFilename = DATA_FILENAME;
+const char *serverFilename = "/data_raw.jsonfiles";
 
 // Maximum time to read sd file data
 const int dataReadTimeout = 10000;
 
 // Replace with your network credentials
-const char *ssid = "Acanac74886";
-const char *password = "6daxaivtku7s";
 int port = 80;
 
 WiFiMulti multi;
