@@ -145,6 +145,21 @@
                         </dl>
                     </div>
                 </div>
+
+                <div class="overflow-hidden bg-white shadow sm:rounded-lg my-6">
+                    <div class="px-4 py-5 sm:px-6">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Luminosity:</h3>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500">Lux</p>
+                    </div>
+                    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                        <dl class="sm:divide-y sm:divide-gray-200">
+                            <div class="py-4 sm:grid sm:grid-cols-4 sm:gap-4 sm:py-5 sm:px-6">
+                                <canvas id="luxChart" width="800" height="300"></canvas>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
             </div>
         </main>
     </div>
@@ -195,7 +210,7 @@
                 const rawData = await fetch(fetchDataLocation, mode).then((data) => data.text()).then(data => { return data });
                 let splitData = rawData.split("\n");
                 // To simplify label formatting, only show 100 data points
-                splitData = splitData.slice(0,100);
+                // splitData = splitData.slice(0,100);
                 console.log(`Data lines: ${splitData.length}`)
                 let lastTimeStamp = 0;
                 const parsedData = splitData.reduce((results, item) => {
@@ -657,6 +672,77 @@
                     options: options,
                 };
                 const eCO2Chart= new Chart(ctx, config);
+
+                const visibleLuminosityTSL2591 = parsedData.map(sensorData => sensorData["visible_luminosity_tsl2591"]);
+                const infrafredLuminosityTSL2591 = parsedData.map(sensorData => sensorData["infrared_luminosity_tsl2591"]);
+                const luxTSL2591 = parsedData.map(sensorData => sensorData["lux_tsl2591"]);
+
+                ctx = document.getElementById('luxChart');
+                ctx2d = ctx.getContext("2d");
+                data = {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'LuxDataset',
+                            data: luxTSL2591,
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'VisibleLuminosityDataset',
+                            data: visibleLuminosityTSL2591,
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'InfraredLuminosityDataset',
+                            data: infrafredLuminosityTSL2591,
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        },
+
+                    ]
+                };
+                options = {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            },
+                            ticks: timeTick
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Lux'
+                            },
+                            // min: 10,
+                            // max: 45,
+                            ticks: {
+                                callback: function (value, index, ticks) {
+                                    return value + " lux";
+                                },
+                                stepSize: 100
+                            }
+                        }
+                    }
+                }
+                config = {
+                    type: 'line',
+                    data: data,
+                    options: options,
+                };
+                const luxChart = new Chart(ctx, config);
 
             } catch (e) {
                 console.error(e)
