@@ -11,7 +11,7 @@
 class SGP40Sensor: public BaseSensor {
     private:
         Adafruit_SGP40 sgp40;
-        const char *name = "SGP40 VOC Index sensor";
+        String name = "SGP40 VOC Index sensor";
 
     public:
     bool setup()
@@ -44,8 +44,8 @@ class SGP40Sensor: public BaseSensor {
         
     }
 
-    char getName() {
-        return *name;
+    String getName() {
+        return name;
     }
 
     DynamicJsonDocument getData()

@@ -12,7 +12,7 @@ class TSL2591Sensor : public BaseSensor
 {
     private:
         Adafruit_TSL2591 tsl = Adafruit_TSL2591(2591); // pass in a number for the sensor identifier (for your use later)
-        const char *name = "TSL2591 Lux sensor";
+        String name = "TSL2591 Lux sensor";
 
     public:
         bool setup()
@@ -112,9 +112,9 @@ class TSL2591Sensor : public BaseSensor
         {
         }
 
-        char getName()
+        String getName()
         {
-            return *name;
+            return name;
         }
 
         DynamicJsonDocument getData()

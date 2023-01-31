@@ -12,7 +12,7 @@ class AHT20Sensor: public BaseSensor {
     private:
         Adafruit_AHTX0 aht;
 
-        const char *name = "AHT20 Temp/Humidity Sensor";
+        String name = "AHT20 Temp/Humidity Sensor";
 
     public:
         bool setup()
@@ -46,8 +46,8 @@ class AHT20Sensor: public BaseSensor {
             
         }
 
-        char getName() {
-            return *name;
+        String getName() {
+            return name;
         }
 
         DynamicJsonDocument getData()

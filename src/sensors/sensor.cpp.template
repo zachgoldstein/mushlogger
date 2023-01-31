@@ -10,7 +10,7 @@
 class XXXSensor: public BaseSensor {
     private:
 
-    const char *name = "XXX";
+    String name = "XXX";
 
     public:
     bool setup()
@@ -27,8 +27,8 @@ class XXXSensor: public BaseSensor {
         
     }
 
-    char getName() {
-        return *name;
+    String getName() {
+        return name;
     }
 
     DynamicJsonDocument getData()

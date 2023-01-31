@@ -12,7 +12,7 @@
 class SCD4xSensor: public BaseSensor {
     private:
         SCD4x co2_sensor;
-        const char *name = "SCD40 Co2 Sensor";
+        String name = "SCD40 Co2 Sensor";
 
     public:
     bool setup()
@@ -56,8 +56,8 @@ class SCD4xSensor: public BaseSensor {
         
     }
 
-    char getName() {
-        return *name;
+    String getName() {
+        return name;
     }
 
     DynamicJsonDocument getData()

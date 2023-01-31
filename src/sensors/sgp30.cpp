@@ -11,7 +11,7 @@
 class XXXSensor: public BaseSensor {
     private:
         Adafruit_SGP30 sgp30;
-        const char *name = "SGP30 eCO2 Sensor";
+        String name = "SGP30 eCO2 Sensor";
         uint32_t lastsgp30BaselineLogTimestamp = 0;
         uint32_t sgp30BaselineLogFreq = 30; // Log sgp30 baseline every 30 seconds;
 
@@ -85,8 +85,8 @@ class XXXSensor: public BaseSensor {
             // }
         }
 
-        char getName() {
-            return *name;
+        String getName() {
+            return name;
         }
         
         void configureHumidity(float temp, float humidity) {

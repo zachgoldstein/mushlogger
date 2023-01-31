@@ -13,7 +13,7 @@
 class BME688Sensor: public BaseSensor {
     private:
     Adafruit_BME680 bme688;
-    const char *name = "BME688 Temp/Pressure/Humidity Sensor";
+    String name = "BME688 Temp/Pressure/Humidity Sensor";
 
     public:
     bool setup()
@@ -91,8 +91,8 @@ class BME688Sensor: public BaseSensor {
         
     }
 
-    char getName() {
-        return *name;
+    String getName() {
+        return name;
     }
 
     DynamicJsonDocument getData()

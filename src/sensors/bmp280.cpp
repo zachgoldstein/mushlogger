@@ -12,7 +12,7 @@ class XXXSensor: public BaseSensor {
     private:
         Adafruit_BMP280 bmp; // I2C
 
-        const char *name = "BMP280 Temp/Humidity/Pressure Sensor";
+        String name = "BMP280 Temp/Humidity/Pressure Sensor";
 
     public:
         bool setup()
@@ -66,8 +66,8 @@ class XXXSensor: public BaseSensor {
             
         }
 
-        char getName() {
-            return *name;
+        String getName() {
+            return name;
         }
 
         DynamicJsonDocument getData()
