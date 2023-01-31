@@ -115,7 +115,6 @@ bool setupSensors() {
         Serial.println(String("Setting up sensor: ") + sensor->getName());
         if (sensor->setup() == false) {
             Serial.println(String("Sensor setup failed: ") + sensor->getName());
-            return false;
         }
     }
 
