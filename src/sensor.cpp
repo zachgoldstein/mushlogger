@@ -62,6 +62,7 @@ void debugSensors(uint32_t timestamp)
 
 void logSensorDataToFile(uint32_t timestamp, String data_location)
 {
+    Serial.println("Logging sensor data");
     DynamicJsonDocument doc(600);
     doc["time_rtc"] = timestamp;
 
@@ -73,11 +74,7 @@ void logSensorDataToFile(uint32_t timestamp, String data_location)
         BaseSensor *sensor = *iter;
         DynamicJsonDocument sensor_doc = sensor->getData();
         mergeDocs(doc.as<JsonObject>(), sensor_doc.as<JsonObject>());
-
     }
-
-    // DynamicJsonDocument bme688_doc = bme688_sensor.getData();
-    // mergeDocs(doc.as<JsonObject>(), bme688_doc.as<JsonObject>());
 
     File file = SD.open(data_location, FILE_WRITE);
     if (!file)
@@ -97,6 +94,9 @@ void logSensorDataToFile(uint32_t timestamp, String data_location)
 
     // Close the file
     file.close();
+
+    Serial.println("Logged sensor data");
+    serializeJson(doc, Serial);
 }
 
 bool setupSensors() {
