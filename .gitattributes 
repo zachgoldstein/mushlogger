@@ -1,3 +1,5 @@
 *.css linguist-detectable=false
 static/*.css linguist-detectable=false
+static/input.css linguist-vendored
+static/output.css linguist-vendored
 src/node_modules/** linguist-vendored
